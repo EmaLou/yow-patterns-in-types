@@ -81,7 +81,12 @@ object Warmup {
    * resX: List[Int] = List(1, 2, 3, 4, 5, 6, 7, 8)
    */
   def append[A](x: List[A], y: List[A]): List[A] =
-    ???
+    x match {
+        case Nil =>
+          y
+        case a :: as =>
+          a :: append(as, y)
+    }
 
   /*
    * Exercise: 0.2:
@@ -100,7 +105,13 @@ object Warmup {
    *     not infer what you mean.
    */
   def map[A, B](xs: List[A])(f: A => B): List[B] =
-    ???
+      xs match {
+          case Nil =>
+            Nil
+          case a :: as =>
+            f(a) :: map(as)(f)
+      }
+
 
   /*
    * Exercise: 0.3:
@@ -112,7 +123,9 @@ object Warmup {
    * resX: List[Int] = List(1, 2)
    */
   def filter[A](xs: List[A])(p: A => Boolean): List[A] =
-    ???
+     xs.foldRight(List[A]())(
+        (x, acc) => if(p(x)) x :: acc else acc
+     )
 
   /*
    * Exercise: 0.4:
@@ -132,8 +145,11 @@ object Warmup {
    *     Type annotations are required when scala can
    *     not infer what you mean.
    */
-  def reverse[A](xs: List[A]): List[A] =
-    ???
+  def reverse[A](xs: List[A]): List[A] = {
+      xs.foldLeft(List[A]())(
+          (acc, x) => x :: acc
+      )
+  }
 
   /*
    * *Challenge* Exercise: 0.5:
@@ -154,6 +170,14 @@ object Warmup {
    * ~~~ library hint: use can just use List[A]#sorted to sort the list before you start.
    * ~~~ library hint: List[A]#min and List#max exist.
    */
+
   def ranges(xs: List[Int]): List[(Int, Int)] =
-    ???
+       ???
+  // NOT FINISH
+    //xs.sorted
+
+    //f(a: Int, b: Int): (Int, Int) = {
+         //if((a+1) == b) (a,b) else (a, a)
+        //}
+
 }
